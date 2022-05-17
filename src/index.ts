@@ -1,13 +1,16 @@
-import sum from "./sum";
-import hello from "./hello";
-import setCookie from "./setCookie";
-// イベント
-import buttonClick from "./buttonClick";
-import inputSubmit from "./inputSubmit";
+export default class Tracker {
+  constructor(name: string) {
+    console.log(name);
+  }
+  user() {
+    console.log("user");
+  }
 
-const listenerStart = () => {
-  buttonClick();
-  inputSubmit();
-};
+  track() {
+    console.log("track");
+  }
 
-export default { listenerStart, setCookie, sum, hello };
+  push() {
+    console.log("push");
+  }
+}
