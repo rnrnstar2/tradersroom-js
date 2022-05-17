@@ -1,16 +1,19 @@
-export default class Tracker {
-  constructor(name: string) {
-    console.log(name);
-  }
-  user() {
-    console.log("user");
-  }
+import sum from "./sum";
+import hello from "./hello";
+import setCookie from "./setCookie";
+// イベント
+import buttonClick from "./buttonClick";
+import inputSubmit from "./inputSubmit";
+// クラス
+import Tracker from "./tracker";
 
-  track() {
-    console.log("track");
-  }
+const listenerStart = () => {
+  buttonClick();
+  inputSubmit();
+};
 
-  push() {
-    console.log("push");
-  }
-}
+const tracker = (publicKey: string) => {
+  return new Tracker(publicKey);
+};
+
+export default { sum, hello, setCookie, listenerStart, tracker };
