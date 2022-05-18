@@ -17,7 +17,7 @@ export default class Tracker {
   }
 
   // API送信
-  async postApi(sendData: any) {
+  postApi(sendData: any) {
     console.log(">>> postApi <<<");
     return new Promise((resolve, reject) => {
       fetch("https://ett62q7csgeatvki2ajoegwyoe0cnpoa.lambda-url.ap-northeast-1.on.aws/ ", {
@@ -59,7 +59,7 @@ export default class Tracker {
   form() {
     console.log("formのリスナーを起動しました。");
     const formElement = <HTMLFormElement>document.getElementById("tr-form");
-    formElement.addEventListener("submit", async (event) => {
+    formElement.addEventListener("submit", (event) => {
       console.log("フォームがsubmitされました");
       event.preventDefault();
 
@@ -85,8 +85,8 @@ export default class Tracker {
       if (!sendData.email) return;
 
       // API送信
-      await this.postApi(sendData);
-      // this.postApi(sendData);
+      // await this.postApi(sendData);
+      this.postApi(sendData);
     });
   }
 }
