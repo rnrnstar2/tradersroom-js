@@ -1,6 +1,5 @@
 import setCookie from "./setCookie";
 import getQuery from "./getQuery";
-import sum from "./sum";
 
 // イベント
 import inputSubmit from "./inputSubmit";
@@ -23,4 +22,4 @@ const trackerInit = (publicKey: string) => {
   return new Tracker(publicKey);
 };
 
-export default { sum, listenerStart, cookieInit, trackerInit };
+export default { listenerStart, cookieInit, trackerInit };
