@@ -47,36 +47,36 @@ export default class Tracker {
     return "";
   }
 
-  // // 証券会社に登録
-  // form() {
-  //   const formElement = <HTMLFormElement>document.getElementById("tr-form");
-  //   formElement.addEventListener("submit", (event) => {
-  //     console.log("フォームがsubmitされました");
-  //     event.preventDefault();
+  // 証券会社に登録
+  form() {
+    const formElement = <HTMLFormElement>document.getElementById("tr-form");
+    formElement.addEventListener("submit", (event) => {
+      console.log("フォームがsubmitされました");
+      event.preventDefault();
 
-  //     // トラッキングIDを取得
-  //     const trackingId = this.getTrackingId();
-  //     if (!trackingId) return;
-  //     console.log("trackingId: ", trackingId);
+      // トラッキングIDを取得
+      const trackingId = this.getTrackingId();
+      if (!trackingId) return;
+      console.log("trackingId: ", trackingId);
 
-  //     // フォームデータを解析
-  //     const target = event.target;
-  //     if (!target) return;
-  //     const arr = Array.from(target as any) as HTMLInputElement[];
-  //     let sendData: any = {};
-  //     arr.map((e) => {
-  //       const value = e.value;
-  //       const attribute = e.attributes as any;
-  //       const key = attribute["data-tr-form"]?.value;
-  //       if (key) sendData[key] = value;
-  //     });
-  //     console.log("sendData: ", sendData);
+      // フォームデータを解析
+      const target = event.target;
+      if (!target) return;
+      const arr = Array.from(target as any) as HTMLInputElement[];
+      let sendData: any = {};
+      arr.map((e) => {
+        const value = e.value;
+        const attribute = e.attributes as any;
+        const key = attribute["data-tr-form"]?.value;
+        if (key) sendData[key] = value;
+      });
+      console.log("sendData: ", sendData);
 
-  //     // チェック
-  //     if (!sendData.email) return;
+      // チェック
+      if (!sendData.email) return;
 
-  //     // API送信
-  //     this.postApi(sendData);
-  //   });
-  // }
+      // // API送信
+      // this.postApi(sendData);
+    });
+  }
 }
