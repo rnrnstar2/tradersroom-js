@@ -1,19 +1,24 @@
-import sum from "./sum";
-import hello from "./hello";
 import setCookie from "./setCookie";
+import getQuery from "./getQuery";
+
 // イベント
-import buttonClick from "./buttonClick";
 import inputSubmit from "./inputSubmit";
+
 // クラス
 import Tracker from "./tracker";
 
 const listenerStart = () => {
-  buttonClick();
   inputSubmit();
 };
 
-const tracker = (publicKey: string) => {
+const cookieInit = () => {
+  // トラッキングIdがクエリに存在する場合はcookieにセット
+  const trackingId = getQuery("trackingId");
+  if (trackingId) setCookie("trackingId", trackingId, 30);
+};
+
+const trackerInit = (publicKey: string) => {
   return new Tracker(publicKey);
 };
 
-export default { sum, hello, setCookie, listenerStart, tracker };
+export default { listenerStart, cookieInit, trackerInit };
