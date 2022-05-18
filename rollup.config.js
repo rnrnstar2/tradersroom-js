@@ -21,17 +21,20 @@ const banner = `/*!
 */`;
 
 export default [
-  // for Browser
+  // ブラウザ用の設定
   {
     input: "src/index.ts",
     output: [
+      // uncompressed
       {
         name: moduleName,
+        // ブラウザ用の出力ファイル
         file: pkg.browser,
         format: "iife",
         sourcemap: "inline",
         banner,
       },
+      // minified
       {
         name: moduleName,
         file: pkg.browser.replace(".js", ".min.js"),
@@ -43,6 +46,7 @@ export default [
     plugins: [
       pluginTypescript(),
       pluginCommonjs({
+        // transformMixedEsModules: true,
         extensions: [".js", ".ts"],
       }),
       pluginBabel({
@@ -50,15 +54,17 @@ export default [
         configFile: path.resolve(__dirname, ".babelrc.js"),
       }),
       pluginNodeResolve({
+        // ブラウザ向けにバンドルする
         browser: true,
       }),
     ],
   },
-  // For NPM
+  // ES Module用の設定
   {
     input: `src/index.ts`,
     output: [
       {
+        // ES用の出力ファイル
         file: pkg.module,
         format: "es",
         sourcemap: "inline",
@@ -75,11 +81,12 @@ export default [
       }),
     ],
   },
-  // For NPM
+  // CommonJS用の設定
   {
     input: "src/index.ts",
     output: [
       {
+        // CommonJS用の出力ファイル
         file: pkg.main,
         format: "cjs",
         sourcemap: "inline",
