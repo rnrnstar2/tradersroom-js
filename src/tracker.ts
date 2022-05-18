@@ -30,16 +30,15 @@ export default class Tracker {
 
   // トラッキングIDを取得
   getTrackingId() {
-    let trackingId = "";
     const cookies = document.cookie;
     const cookiesArray = cookies.split(";");
     for (var c of cookiesArray) {
       const cArray = c.split("=");
       const key = cArray[0];
       const value = cArray[1];
-      if (key == "trackingId") trackingId = value;
+      if (key == "trackingId") return value;
     }
-    return trackingId;
+    return "";
   }
 
   // 証券会社に登録
