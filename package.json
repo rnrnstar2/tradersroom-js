@@ -1,6 +1,6 @@
 {
   "name": "@tradersroom/partners",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "tradersroom partners repository",
   "main": "dist/partners.js",
   "module": "dist/partners.esm.js",
