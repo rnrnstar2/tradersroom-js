@@ -7,10 +7,6 @@ import inputSubmit from "./inputSubmit";
 // クラス
 import Tracker from "./tracker";
 
-const listenerStart = () => {
-  inputSubmit();
-};
-
 const cookieInit = () => {
   // トラッキングIdがクエリに存在する場合はcookieにセット
   const trackingId = getQuery("trackingId");
@@ -22,4 +18,8 @@ const trackerInit = (publicKey: string) => {
   return new Tracker(publicKey);
 };
 
-export default { listenerStart, cookieInit, trackerInit };
+const listenerStart = () => {
+  inputSubmit();
+};
+
+export default { cookieInit, trackerInit, listenerStart };

@@ -19,20 +19,26 @@ export default class Tracker {
     console.log(this.publicKey);
   }
 
-  // // API送信
-  // postApi(sendData: SendData) {
-  //   const newData = {
-  //     ...sendData,
-  //     publicKey: this.publicKey,
-  //   };
-  //   console.log(newData);
-
-  //   let functionUrl = "https://ett62q7csgeatvki2ajoegwyoe0cnpoa.lambda-url.ap-northeast-1.on.aws/ ";
-  //   let xhr = new XMLHttpRequest();
-  //   xhr.open("POST", functionUrl, false);
-  //   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  //   xhr.send(JSON.stringify(newData));
-  // }
+  // API送信
+  postApi(sendData: any) {
+    fetch("https://ett62q7csgeatvki2ajoegwyoe0cnpoa.lambda-url.ap-northeast-1.on.aws/ ", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: JSON.stringify({
+        ...sendData,
+        publicKey: this.publicKey,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
 
   // トラッキングIDを取得
   getTrackingId() {
@@ -75,8 +81,8 @@ export default class Tracker {
       // チェック
       if (!sendData.email) return;
 
-      // // API送信
-      // this.postApi(sendData);
+      // API送信
+      this.postApi(sendData);
     });
   }
 }
