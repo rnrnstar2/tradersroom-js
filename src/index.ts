@@ -1,5 +1,6 @@
 import setCookie from "./setCookie";
 import getQuery from "./getQuery";
+import sum from "./sum";
 
 // イベント
 import inputSubmit from "./inputSubmit";
@@ -18,7 +19,8 @@ const cookieInit = () => {
 };
 
 const trackerInit = (publicKey: string) => {
+  console.log("trackerInit", publicKey);
   return new Tracker(publicKey);
 };
 
-export default { listenerStart, cookieInit, trackerInit };
+export default { sum, listenerStart, cookieInit, trackerInit };
