@@ -1,4 +1,7 @@
-// interface は使えない？
+// 辞書オブジェクトを作成する
+interface StringDict {
+  [name: string]: string;
+}
 
 export default class Tracker {
   publicKey: string;
@@ -43,16 +46,18 @@ export default class Tracker {
   }
 
   // トラッキングIDを取得
-  getTrackingId() {
+  getTradersRoomId() {
     const cookies = document.cookie;
     const cookiesArray = cookies.split(";");
+    let cookieDict: StringDict = {};
     for (var c of cookiesArray) {
       const cArray = c.split("=");
-      const key = cArray[0];
-      const value = cArray[1];
-      if (key == "trackingId") return value;
+      const key = cArray[0] as string;
+      const value = cArray[1] as string;
+      if (["memberId", "projectId", "trackingId"].includes(key)) cookieDict[key] = value;
     }
-    return "";
+    console.log("cookieDict: ", cookieDict);
+    return cookieDict;
   }
 
   // 証券会社に登録
@@ -64,15 +69,16 @@ export default class Tracker {
       event.preventDefault();
 
       // トラッキングIDを取得
-      const trackingId = this.getTrackingId();
-      if (!trackingId) return;
-      console.log("trackingId: ", trackingId);
+      const cookieDict = this.getTradersRoomId();
+      if (!cookieDict.memberId) return;
 
       // フォームデータを解析
       const target = event.target;
       if (!target) return;
       const arr = Array.from(target as any) as HTMLInputElement[];
-      let sendData: any = {};
+      let sendData: StringDict = {
+        ...cookieDict,
+      };
       arr.map((e) => {
         const value = e.value;
         const attribute = e.attributes as any;
@@ -85,7 +91,6 @@ export default class Tracker {
       if (!sendData.email) return;
 
       // API送信
-      // await this.postApi(sendData);
       this.postApi(sendData);
     });
   }
