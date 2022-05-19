@@ -3,10 +3,11 @@ interface StringDict {
   [name: string]: string;
 }
 
+const trackerLink = "https://foqvtm7n5rx6fkp3do73q3d6nm0hswmu.lambda-url.ap-northeast-1.on.aws/";
 export default class Tracker {
-  publicKey: string;
-  constructor(publicKey: string) {
-    this.publicKey = publicKey;
+  programId: string;
+  constructor(programId: string) {
+    this.programId = programId;
   }
 
   user(name: string) {
@@ -16,21 +17,21 @@ export default class Tracker {
 
   track() {
     console.log("track");
-    console.log(this.publicKey);
+    console.log(this.programId);
   }
 
   // API送信
   postApi(sendData: any) {
     console.log(">>> postApi <<<");
     return new Promise((resolve, reject) => {
-      fetch("https://ett62q7csgeatvki2ajoegwyoe0cnpoa.lambda-url.ap-northeast-1.on.aws/ ", {
+      fetch(trackerLink, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: JSON.stringify({
           ...sendData,
-          publicKey: this.publicKey,
+          programId: this.programId,
         }),
       })
         .then((response) => response.json())
@@ -67,6 +68,7 @@ export default class Tracker {
     formElement.addEventListener("submit", (event) => {
       console.log("フォームがsubmitされました");
       event.preventDefault();
+      if (!this.programId) return;
 
       // トラッキングIDを取得
       const cookieDict = this.getTradersRoomId();
