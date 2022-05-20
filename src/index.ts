@@ -14,9 +14,20 @@ const cookieInit = () => {
   if (trackingId) setCookie("trackingId", trackingId, 30);
 };
 
-const trackerInit = (publicKey: string) => {
+const documentLoaded = async () => {
+  return new Promise((resolve) => {
+    document.addEventListener("DOMContentLoaded", function () {
+      resolve(true);
+    });
+  });
+};
+
+const trackerInit = async (publicKey: string) => {
   // console.log("trackerInit", publicKey);
   cookieInit();
+  console.log("documentLoaded開始");
+  await documentLoaded();
+  console.log("documentLoaded完了");
   return new Tracker(publicKey);
 };
 
