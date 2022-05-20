@@ -1,4 +1,5 @@
 const setCookie = (name: string, value: string, days: number) => {
+  console.log(name, value);
   let expires;
   if (days) {
     const date = new Date();
@@ -8,7 +9,6 @@ const setCookie = (name: string, value: string, days: number) => {
     expires = "";
   }
   const cookie = name + "=" + value + expires + "; path=/";
-  console.log(cookie);
   document.cookie = cookie;
 };
 

@@ -52,7 +52,7 @@ export default class Tracker {
     const cookiesArray = cookies.split(";");
     let cookieDict: StringDict = {};
     for (var c of cookiesArray) {
-      const cArray = c.split("=");
+      const cArray = c.trim().split("=");
       const key = cArray[0] as string;
       const value = cArray[1] as string;
       if (["memberId", "projectId", "trackingId"].includes(key)) cookieDict[key] = value;
