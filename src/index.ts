@@ -4,15 +4,6 @@ import getQuery from "./getQuery";
 // クラス
 import Tracker from "./tracker";
 
-if (document.currentScript) {
-  const programId = document.currentScript.getAttribute("data-program-id");
-  console.log("programId", programId);
-  if (programId) {
-    const tracker = new Tracker(programId);
-    tracker.form();
-  }
-}
-
 const cookieInit = () => {
   // トラッキングIdがクエリに存在する場合はcookieにセット
   const projectId = getQuery("projectId");
@@ -39,5 +30,16 @@ const trackerInit = async (publicKey: string) => {
   // console.log("documentLoaded完了");
   return new Tracker(publicKey);
 };
+
+const currentScript = document.currentScript;
+console.log("currentScript", currentScript);
+if (currentScript) {
+  const programId = currentScript.getAttribute("data-program-id");
+  console.log("programId", programId);
+  if (programId) {
+    const tracker = new Tracker(programId);
+    tracker.form();
+  }
+}
 
 export default { cookieInit, trackerInit };
