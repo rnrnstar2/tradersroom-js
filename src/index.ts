@@ -14,6 +14,25 @@ const cookieInit = () => {
   if (trackingId) setCookie("trackingId", trackingId, 30);
 };
 
+const trackerInit = (programId: string) => {
+  const tracker = new Tracker(programId);
+  tracker.form();
+  return tracker;
+};
+
+let tracker: Tracker;
+const currentScript = document.currentScript;
+if (currentScript) {
+  const programId = currentScript.getAttribute("data-program-id");
+  console.log("programId", programId);
+  if (programId) {
+    cookieInit();
+    tracker = trackerInit(programId);
+  }
+}
+
+export default { cookieInit, trackerInit };
+
 // const documentLoaded = async () => {
 //   return new Promise((resolve) => {
 //     document.addEventListener("DOMContentLoaded", function () {
@@ -21,25 +40,3 @@ const cookieInit = () => {
 //     });
 //   });
 // };
-
-const trackerInit = async (publicKey: string) => {
-  // console.log("trackerInit", publicKey);
-  cookieInit();
-  // console.log("documentLoaded開始");
-  // await documentLoaded();
-  // console.log("documentLoaded完了");
-  return new Tracker(publicKey);
-};
-
-const currentScript = document.currentScript;
-console.log("currentScript", currentScript);
-if (currentScript) {
-  const programId = currentScript.getAttribute("data-program-id");
-  console.log("programId", programId);
-  if (programId) {
-    const tracker = new Tracker(programId);
-    tracker.form();
-  }
-}
-
-export default { cookieInit, trackerInit };
