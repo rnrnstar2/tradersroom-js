@@ -16,6 +16,7 @@ const cookieInit = () => {
 
 const trackerInit = (publicKey: string) => {
   // console.log("trackerInit", publicKey);
+  cookieInit();
   return new Tracker(publicKey);
 };
 
