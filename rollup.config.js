@@ -101,7 +101,7 @@ export default [
       {
         // ES用の出力ファイル
         file: pkg.module,
-        format: "es",
+        format: "esm",
         sourcemap: "inline",
         banner,
         exports: "named",
@@ -109,7 +109,7 @@ export default [
     ],
     external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.devDependencies || {})],
     plugins: [
-      pluginTypescript({ tsconfig: "./tsconfig.json" }),
+      pluginTypescript(),
       pluginBabel({
         babelHelpers: "bundled",
         configFile: path.resolve(__dirname, ".babelrc.js"),
