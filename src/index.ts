@@ -5,18 +5,6 @@ import getQuery from "./getQuery";
 import Tracker from "./tracker";
 import FormListener from "./formListener";
 
-//
-const currentScript = document.currentScript;
-// if (!currentScript) return null;
-let programId: string;
-if (currentScript) programId = currentScript.getAttribute("data-program-id") as string;
-
-// const getProgramId = () => {
-//   console.log(">>> getProgramId <<<");
-//   console.log("programId", programId);
-//   return programId;
-// };
-
 const cookieInit = () => {
   console.log(">>> cookieInit <<<");
   // トラッキングIdがクエリに存在する場合はcookieにセット
@@ -28,21 +16,23 @@ const cookieInit = () => {
   if (trackingId) setCookie("trackingId", trackingId, 30);
 };
 
-const trackerInit = () => {
+const trackerInit = (programId: string) => {
   console.log(">>> trackerInit <<<");
-  // const programId = getProgramId();
-  if (programId) return new Tracker(programId);
-  else return null;
+  return new Tracker(programId);
 };
 
-const formInit = () => {
+const formInit = (programId: string) => {
   console.log(">>> formInit <<<");
-  // const programId = getProgramId();
-  if (programId) {
-    cookieInit();
-    const formListener = new FormListener(programId);
-    formListener.form();
-  }
+  cookieInit();
+  const formListener = new FormListener(programId);
+  formListener.form();
 };
+
+// ブラウザでスクリプトを読み込んだ場合
+const currentScript = document.currentScript;
+if (currentScript) {
+  const programId = currentScript.getAttribute("data-program-id") as string;
+  if (programId) formInit(programId);
+}
 
 export default { trackerInit, formInit };
