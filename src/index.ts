@@ -3,6 +3,15 @@ import getQuery from "./getQuery";
 
 // クラス
 import Tracker from "./tracker";
+import FormListener from "./formListener";
+
+const getProgramId = () => {
+  const currentScript = document.currentScript;
+  if (!currentScript) return null;
+  const programId = currentScript.getAttribute("data-program-id");
+  console.log("programId", programId);
+  return programId;
+};
 
 const cookieInit = () => {
   // トラッキングIdがクエリに存在する場合はcookieにセット
@@ -14,29 +23,19 @@ const cookieInit = () => {
   if (trackingId) setCookie("trackingId", trackingId, 30);
 };
 
-const trackerInit = (programId: string) => {
-  const tracker = new Tracker(programId);
-  tracker.form();
-  return tracker;
+const trackerInit = () => {
+  const programId = getProgramId();
+  if (programId) return new Tracker(programId);
+  else return null;
 };
 
-let tracker: Tracker;
-const currentScript = document.currentScript;
-if (currentScript) {
-  const programId = currentScript.getAttribute("data-program-id");
-  console.log("programId", programId);
+const formInit = () => {
+  const programId = getProgramId();
   if (programId) {
     cookieInit();
-    tracker = trackerInit(programId);
+    const formListener = new FormListener(programId);
+    formListener.form();
   }
-}
+};
 
-export default { cookieInit, trackerInit };
-
-// const documentLoaded = async () => {
-//   return new Promise((resolve) => {
-//     document.addEventListener("DOMContentLoaded", function () {
-//       resolve(true);
-//     });
-//   });
-// };
+export default { trackerInit, formInit };
