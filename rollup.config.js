@@ -56,6 +56,44 @@ export default [
       }),
     ],
   },
+  // Formリスナーのみ
+  {
+    input: "src/browser.ts",
+    output: [
+      // uncompressed
+      {
+        name: "browser",
+        // ブラウザ用の出力ファイル
+        file: "dist/browser.js",
+        format: "iife",
+        sourcemap: "inline",
+        banner,
+      },
+      // minified
+      {
+        name: "browser",
+        file: "dist/browser.min.js",
+        format: "iife",
+        banner,
+        plugins: [pluginTerser()],
+      },
+    ],
+    plugins: [
+      pluginTypescript(),
+      pluginCommonjs({
+        // transformMixedEsModules: true,
+        extensions: [".js", ".ts"],
+      }),
+      pluginBabel({
+        babelHelpers: "bundled",
+        configFile: path.resolve(__dirname, ".babelrc.js"),
+      }),
+      pluginNodeResolve({
+        // ブラウザ向けにバンドルする
+        browser: true,
+      }),
+    ],
+  },
   // ES Module用の設定
   {
     input: `src/index.ts`,

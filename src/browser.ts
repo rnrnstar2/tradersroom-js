@@ -2,7 +2,6 @@ import setCookie from "./setCookie";
 import getQuery from "./getQuery";
 
 // クラス
-import Tracker from "./tracker";
 import FormListener from "./formListener";
 
 const cookieInit = () => {
@@ -16,11 +15,6 @@ const cookieInit = () => {
   if (trackingId) setCookie("trackingId", trackingId, 30);
 };
 
-const trackerInit = (programId: string) => {
-  console.log(">>> trackerInit <<<");
-  return new Tracker(programId);
-};
-
 const formInit = (programId: string) => {
   console.log(">>> formInit <<<");
   cookieInit();
@@ -28,4 +22,11 @@ const formInit = (programId: string) => {
   formListener.form();
 };
 
-export default { trackerInit, formInit };
+// ブラウザでスクリプトを読み込んだ場合
+const currentScript = document.currentScript;
+if (currentScript) {
+  const programId = currentScript.getAttribute("data-program-id") as string;
+  if (programId) formInit(programId);
+}
+
+export default { cookieInit, formInit };
