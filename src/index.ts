@@ -12,11 +12,11 @@ interface StringDict {
 
 export default class TradersRoomPartner {
   programId: string;
-  constructor(programId: string) {
+  public constructor(programId: string) {
     this.programId = programId;
   }
 
-  cookieInit() {
+  public cookieInit(): void {
     console.log(">>> cookieInit <<<");
     // トラッキングIdがクエリに存在する場合はcookieにセット
     const projectId = getQuery("projectId");
@@ -27,14 +27,14 @@ export default class TradersRoomPartner {
     if (trackingId) setCookie("trackingId", trackingId, 30);
   }
 
-  formInit(programId: string) {
+  public formInit(programId: string): void {
     console.log(">>> formInit <<<");
     this.cookieInit();
     const formListener = new FormListener(programId);
     formListener.form();
   }
 
-  createTrader(memberId: string, projectId?: string, trackingId?: string) {
+  public createTrader(memberId: string, projectId?: string, trackingId?: string): void {
     console.log(memberId, projectId, trackingId);
     let input: StringDict = {
       memberId: memberId,
@@ -45,7 +45,7 @@ export default class TradersRoomPartner {
     fetchJSON("PUT", "trader", input);
   }
 
-  updateTrader(email: string, accountNumber: string) {
+  public updateTrader(email: string, accountNumber: string): void {
     console.log(email, accountNumber);
     let input: StringDict = {
       email: email,
@@ -55,7 +55,7 @@ export default class TradersRoomPartner {
     fetchJSON("POST", "trader", input);
   }
 
-  updateProgramMembers(programMembersId: string, pips: string) {
+  public updateProgramMembers(programMembersId: string, pips: string): void {
     console.log(programMembersId, pips);
     let input: StringDict = {
       programMembersId: programMembersId,
@@ -65,7 +65,7 @@ export default class TradersRoomPartner {
     fetchJSON("POST", "programMembers", input);
   }
 
-  createTraderReport(accountNumber: string, amount: string, lot?: string) {
+  public createTraderReport(accountNumber: string, amount: string, lot?: string): void {
     console.log(accountNumber, amount, lot);
     let input: StringDict = {
       accountNumber: accountNumber,
@@ -76,11 +76,11 @@ export default class TradersRoomPartner {
     fetchJSON("PUT", "traderReport", input);
   }
 
-  user(name: string) {
+  public user(name: string): void {
     console.log("name: ", name);
   }
 
-  track() {
+  public track(): void {
     console.log("track");
     console.log(this.programId);
   }
