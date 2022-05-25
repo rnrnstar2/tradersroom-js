@@ -109,7 +109,7 @@ export default [
     ],
     external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.devDependencies || {})],
     plugins: [
-      pluginTypescript(),
+      pluginTypescript({ tsconfig: "./tsconfig.json" }),
       pluginBabel({
         babelHelpers: "bundled",
         configFile: path.resolve(__dirname, ".babelrc.js"),

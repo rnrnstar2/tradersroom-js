@@ -1,10 +1,10 @@
 {
   "name": "@tradersroom/partners",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "tradersroom partners repository",
-  "main": "dist/partners.cjs.js",
-  "module": "dist/index.js",
-  "browser": "dist/partners.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "browser": "dist/partner.js",
   "types": "types/index.d.ts",
   "files": [
     "package.json",
