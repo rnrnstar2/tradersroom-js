@@ -5,15 +5,20 @@ import getQuery from "./getQuery";
 import Tracker from "./tracker";
 import FormListener from "./formListener";
 
-const getProgramId = () => {
-  const currentScript = document.currentScript;
-  if (!currentScript) return null;
-  const programId = currentScript.getAttribute("data-program-id");
-  console.log("programId", programId);
-  return programId;
-};
+//
+const currentScript = document.currentScript;
+// if (!currentScript) return null;
+let programId: string;
+if (currentScript) programId = currentScript.getAttribute("data-program-id") as string;
+
+// const getProgramId = () => {
+//   console.log(">>> getProgramId <<<");
+//   console.log("programId", programId);
+//   return programId;
+// };
 
 const cookieInit = () => {
+  console.log(">>> cookieInit <<<");
   // トラッキングIdがクエリに存在する場合はcookieにセット
   const projectId = getQuery("projectId");
   const memberId = getQuery("memberId");
@@ -24,13 +29,15 @@ const cookieInit = () => {
 };
 
 const trackerInit = () => {
-  const programId = getProgramId();
+  console.log(">>> trackerInit <<<");
+  // const programId = getProgramId();
   if (programId) return new Tracker(programId);
   else return null;
 };
 
 const formInit = () => {
-  const programId = getProgramId();
+  console.log(">>> formInit <<<");
+  // const programId = getProgramId();
   if (programId) {
     cookieInit();
     const formListener = new FormListener(programId);
