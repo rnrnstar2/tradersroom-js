@@ -6,7 +6,7 @@ import getQuery from "./getQuery";
 import FormListener from "./formListener";
 import { fetchJSON } from "./api-helpers";
 
-export const loadPartner: PartnerConstructor = (programId) => {
+const loadPartner: PartnerConstructor = (programId) => {
   return new Partner(programId);
 };
 
@@ -85,3 +85,5 @@ class Partner {
     console.log(this.programId);
   }
 }
+
+export default loadPartner;
