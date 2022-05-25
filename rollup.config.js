@@ -101,7 +101,7 @@ export default [
       {
         // ES用の出力ファイル
         file: pkg.module,
-        format: "esm",
+        format: "es",
         sourcemap: "inline",
         banner,
         exports: "named",
