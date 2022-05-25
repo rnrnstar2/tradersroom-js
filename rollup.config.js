@@ -5,13 +5,10 @@ import { babel as pluginBabel } from "@rollup/plugin-babel";
 import { terser as pluginTerser } from "rollup-plugin-terser";
 
 import * as path from "path";
-
-import camelCase from "lodash.camelcase";
-import upperFirst from "lodash.upperfirst";
-
 import pkg from "./package.json";
 
-const moduleName = upperFirst(camelCase(pkg.name.replace(/^\@.*\//, "")));
+// upperFirst(camelCase(pkg.name.replace(/^\@.*\//, "")));
+const moduleName = "Partners";
 console.log(moduleName);
 
 const banner = `/*!

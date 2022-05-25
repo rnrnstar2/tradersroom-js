@@ -1,6 +1,6 @@
 {
   "name": "@tradersroom/partners",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "tradersroom partners repository",
   "main": "dist/partners.cjs.js",
   "module": "dist/partners.esm.js",
@@ -56,10 +56,6 @@
     ]
   },
   "dependencies": {
-    "body-scroll-lock": "^3.1.5",
-    "core-js": "^3.11.0",
-    "focus-trap": "^6.4.0",
-    "lodash.merge": "^4.6.2",
     "tslib": "^2.2.0"
   },
   "devDependencies": {
@@ -69,8 +65,6 @@
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@rollup/plugin-typescript": "^8.2.1",
-    "@types/body-scroll-lock": "^2.6.1",
-    "@types/lodash.merge": "^4.6.6",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "browser-sync": "^2.26.14",
@@ -79,8 +73,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "lodash.camelcase": "^4.3.0",
-    "lodash.upperfirst": "^4.3.1",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.45.2",
