@@ -5,9 +5,9 @@ interface StringDict {
   [name: string]: string;
 }
 export default class FormListener {
-  programId: string;
-  constructor(programId: string) {
-    this.programId = programId;
+  token: string;
+  constructor(token: string) {
+    this.token = token;
   }
 
   // トラッキングIDを取得
@@ -32,7 +32,7 @@ export default class FormListener {
     formElement.addEventListener("submit", (event) => {
       console.log("フォームがsubmitされました");
       event.preventDefault();
-      if (!this.programId) return;
+      if (!this.token) return;
 
       // トラッキングIDを取得
       const cookieDict = this.getTradersRoomId();
@@ -57,10 +57,14 @@ export default class FormListener {
       if (!sendData.email) return;
 
       // API送信
-      fetchJSON("POST", "trader", {
-        ...sendData,
-        programId: this.programId,
-      });
+      fetchJSON(
+        "POST",
+        "trader",
+        {
+          ...sendData,
+        },
+        this.token
+      );
     });
   }
 }

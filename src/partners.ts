@@ -7,9 +7,9 @@ import FormListener from "./formListener";
 import { fetchJSON } from "./api-helpers";
 
 export class Partner implements IPartner {
-  programId: string;
-  public constructor(programId: string) {
-    this.programId = programId;
+  token: string;
+  public constructor(token: string) {
+    this.token = token;
   }
 
   public cookieInit(): void {
@@ -34,11 +34,10 @@ export class Partner implements IPartner {
     console.log(memberId, projectId, trackingId);
     let input: StringDict = {
       memberId: memberId,
-      programId: this.programId,
     };
     if (projectId) input["projectId"] = projectId;
     if (trackingId) input["trackingId"] = trackingId;
-    fetchJSON("PUT", "trader", input);
+    fetchJSON("PUT", "trader", input, this.token);
   }
 
   public updateTrader(email: string, accountNumber: string): void {
@@ -46,9 +45,8 @@ export class Partner implements IPartner {
     let input: StringDict = {
       email: email,
       accountNumber: accountNumber,
-      programId: this.programId,
     };
-    fetchJSON("POST", "trader", input);
+    fetchJSON("POST", "trader", input, this.token);
   }
 
   public updateProgramMembers(programMembersId: string, pips: string): void {
@@ -56,20 +54,18 @@ export class Partner implements IPartner {
     let input: StringDict = {
       programMembersId: programMembersId,
       pips: pips,
-      programId: this.programId,
     };
-    fetchJSON("POST", "programMembers", input);
+    fetchJSON("POST", "programMembers", input, this.token);
   }
 
   public createTraderReport(accountNumber: string, amount: string, lot?: string): void {
     console.log(accountNumber, amount, lot);
     let input: StringDict = {
       accountNumber: accountNumber,
-      programId: this.programId,
       amount: amount,
     };
     if (lot) input["lot"] = lot;
-    fetchJSON("PUT", "traderReport", input);
+    fetchJSON("PUT", "traderReport", input, this.token);
   }
 
   public user(name: string): void {
@@ -78,6 +74,6 @@ export class Partner implements IPartner {
 
   public track(): void {
     console.log("track");
-    console.log(this.programId);
+    console.log(this.token);
   }
 }
