@@ -3,7 +3,7 @@
   "version": "0.5.3",
   "description": "tradersroom partners repository",
   "main": "dist/partners.cjs.js",
-  "module": "dist/partners.esm.js",
+  "module": "dist/partners.es.js",
   "browser": "dist/partners.js",
   "types": "types/index.d.ts",
   "files": [

@@ -24,19 +24,25 @@ export default [
     output: [
       // uncompressed
       {
+        // exportされたモジュールを格納する変数
         name: moduleName,
         // ブラウザ用の出力ファイル
         file: pkg.browser,
+        // ブラウザ用フォーマット
         format: "iife",
+        // ソースマップをインラインで出力
         sourcemap: "inline",
+        // copyright
         banner,
       },
       // minified
       {
         name: moduleName,
+        // minifyするので.minを付与する
         file: pkg.browser.replace(".js", ".min.js"),
         format: "iife",
         banner,
+        // minify用プラグインを追加で実行する
         plugins: [pluginTerser()],
       },
     ],
@@ -96,7 +102,7 @@ export default [
   },
   // ES Module用の設定
   {
-    input: `src/index.ts`,
+    input: `src/partners.ts`,
     output: [
       {
         // ES用の出力ファイル
@@ -107,6 +113,7 @@ export default [
         exports: "named",
       },
     ],
+    // 他モジュールは含めない
     external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.devDependencies || {})],
     plugins: [
       pluginTypescript(),
@@ -129,6 +136,7 @@ export default [
         exports: "default",
       },
     ],
+    // 他モジュールは含めない
     external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.devDependencies || {})],
     plugins: [
       pluginTypescript(),
