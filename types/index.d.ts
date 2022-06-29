@@ -31,11 +31,11 @@ export interface StringDict {
 
 export class Partner {
   public static cookieInit(): void;
-  public static formInit(programId: string): void;
-  public static createTrader(memberId: string, projectId?: string, trackingId?: string): void;
-  public static updateTrader(email: string, accountNumber: string): void;
-  public static updateProgramMembers(programMembersId: string, pips: string): void;
-  public static createTraderReport(accountNumber: string, amount: string, lot?: string): void;
+  public static formInit(input: StringDict): void;
+  public static createTrader(input: StringDict): void;
+  public static updateTrader(input: StringDict): void;
+  public static updateProgramMembers(input: StringDict): void;
+  public static createTraderReport(input: StringDict): void;
   public static user(name: string): void;
   public static track(): void;
 }

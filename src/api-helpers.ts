@@ -11,7 +11,7 @@ export async function fetchJSON(mode: "POST" | "PUT", query: string, body: Strin
     fetch(`${trackerLink}/${query}`, {
       method: mode,
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        // "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),

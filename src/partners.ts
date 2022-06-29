@@ -6,6 +6,11 @@ import getQuery from "./getQuery";
 import FormListener from "./formListener";
 import { fetchJSON } from "./api-helpers";
 
+// interface CreateTraderInput {
+//   memberId: string;
+//   projectId?: string;
+//   trackingId?: string;
+// }
 export class Partner implements IPartner {
   token: string;
   public constructor(token: string) {
@@ -30,41 +35,23 @@ export class Partner implements IPartner {
     formListener.form();
   }
 
-  public createTrader(memberId: string, projectId?: string, trackingId?: string): void {
-    console.log(memberId, projectId, trackingId);
-    let input: StringDict = {
-      memberId: memberId,
-    };
-    if (projectId) input["projectId"] = projectId;
-    if (trackingId) input["trackingId"] = trackingId;
+  public createTrader(input: StringDict): void {
+    console.log("createTrader", input);
     fetchJSON("PUT", "trader", input, this.token);
   }
 
-  public updateTrader(email: string, accountNumber: string): void {
-    console.log(email, accountNumber);
-    let input: StringDict = {
-      email: email,
-      accountNumber: accountNumber,
-    };
+  public updateTrader(input: StringDict): void {
+    console.log("updateTrader", input);
     fetchJSON("POST", "trader", input, this.token);
   }
 
-  public updateProgramMembers(programMembersId: string, pips: string): void {
-    console.log(programMembersId, pips);
-    let input: StringDict = {
-      programMembersId: programMembersId,
-      pips: pips,
-    };
+  public updateProgramMembers(input: StringDict): void {
+    console.log("updateProgramMembers", input);
     fetchJSON("POST", "programMembers", input, this.token);
   }
 
-  public createTraderReport(accountNumber: string, amount: string, lot?: string): void {
-    console.log(accountNumber, amount, lot);
-    let input: StringDict = {
-      accountNumber: accountNumber,
-      amount: amount,
-    };
-    if (lot) input["lot"] = lot;
+  public createTraderReport(input: StringDict): void {
+    console.log("createTraderReport", input);
     fetchJSON("PUT", "traderReport", input, this.token);
   }
 
