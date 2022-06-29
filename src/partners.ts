@@ -8,11 +8,11 @@ import { fetchJSON } from "./api-helpers";
 
 export class Partner implements IPartner {
   programId: string;
-  constructor(programId: string) {
+  public constructor(programId: string) {
     this.programId = programId;
   }
 
-  cookieInit(): void {
+  public cookieInit(): void {
     console.log(">>> cookieInit <<<");
     // トラッキングIdがクエリに存在する場合はcookieにセット
     const projectId = getQuery("projectId");
@@ -23,14 +23,14 @@ export class Partner implements IPartner {
     if (trackingId) setCookie("trackingId", trackingId, 30);
   }
 
-  formInit(programId: string): void {
+  public formInit(programId: string): void {
     console.log(">>> formInit <<<");
     this.cookieInit();
     const formListener = new FormListener(programId);
     formListener.form();
   }
 
-  createTrader(memberId: string, projectId?: string, trackingId?: string): void {
+  public createTrader(memberId: string, projectId?: string, trackingId?: string): void {
     console.log(memberId, projectId, trackingId);
     let input: StringDict = {
       memberId: memberId,
@@ -41,7 +41,7 @@ export class Partner implements IPartner {
     fetchJSON("PUT", "trader", input);
   }
 
-  updateTrader(email: string, accountNumber: string): void {
+  public updateTrader(email: string, accountNumber: string): void {
     console.log(email, accountNumber);
     let input: StringDict = {
       email: email,
@@ -51,7 +51,7 @@ export class Partner implements IPartner {
     fetchJSON("POST", "trader", input);
   }
 
-  updateProgramMembers(programMembersId: string, pips: string): void {
+  public updateProgramMembers(programMembersId: string, pips: string): void {
     console.log(programMembersId, pips);
     let input: StringDict = {
       programMembersId: programMembersId,
@@ -61,7 +61,7 @@ export class Partner implements IPartner {
     fetchJSON("POST", "programMembers", input);
   }
 
-  createTraderReport(accountNumber: string, amount: string, lot?: string): void {
+  public createTraderReport(accountNumber: string, amount: string, lot?: string): void {
     console.log(accountNumber, amount, lot);
     let input: StringDict = {
       accountNumber: accountNumber,
@@ -72,11 +72,11 @@ export class Partner implements IPartner {
     fetchJSON("PUT", "traderReport", input);
   }
 
-  user(name: string): void {
+  public user(name: string): void {
     console.log("name: ", name);
   }
 
-  track(): void {
+  public track(): void {
     console.log("track");
     console.log(this.programId);
   }

@@ -1,6 +1,6 @@
 {
   "name": "@tradersroom/partners",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "tradersroom partners repository",
   "main": "dist/partners.cjs.js",
   "module": "dist/partners.es.js",
