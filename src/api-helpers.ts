@@ -18,11 +18,9 @@ export async function fetchJSON(
       body: JSON.stringify(body),
     })
       .then((response) => {
-        console.log(response);
         // 通信が成功したか確認
         if (!response.ok) {
           console.error('esponse.status:', response.status);
-          console.error(response.json());
         }
         return response.json();
       })
