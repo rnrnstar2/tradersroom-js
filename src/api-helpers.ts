@@ -1,12 +1,13 @@
-// 辞書オブジェクトを作成する
-interface StringDict {
-  [name: string]: string;
-}
+import type { StringDict } from '../types/index';
 
-// const trackerLink = "https://foqvtm7n5rx6fkp3do73q3d6nm0hswmu.lambda-url.ap-northeast-1.on.aws/";
-const trackerLink = "https://ip6w7iphheabxfu7clkxg7zxkq0kpmgj.lambda-url.ap-northeast-1.on.aws";
-
-export async function fetchJSON(mode: "POST" | "PUT", query: string, body: StringDict, token: string) {
+const trackerLink =
+  'https://ip6w7iphheabxfu7clkxg7zxkq0kpmgj.lambda-url.ap-northeast-1.on.aws';
+export async function fetchJSON(
+  mode: 'POST' | 'PUT',
+  query: string,
+  body: StringDict,
+  token: string
+) {
   return new Promise((resolve, reject) => {
     fetch(`${trackerLink}/${query}`, {
       method: mode,
@@ -18,12 +19,12 @@ export async function fetchJSON(mode: "POST" | "PUT", query: string, body: Strin
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        console.log('Success:', data);
         resolve(data);
       })
       .catch((error) => {
-        console.error("Error:", error);
-        reject("fail");
+        console.error('Error:', error);
+        reject('fail');
       });
   });
 }
