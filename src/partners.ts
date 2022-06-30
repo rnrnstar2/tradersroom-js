@@ -31,22 +31,22 @@ export class Partner implements IPartner {
 
   public createTrader(input: StringDict): void {
     console.log('createTrader', input);
-    fetchJSON('PUT', 'trader', input, this.token);
+    fetchJSON('POST', 'trader', input, this.token);
   }
 
   public updateTrader(input: StringDict): void {
     console.log('updateTrader', input);
-    fetchJSON('POST', 'trader', input, this.token);
+    fetchJSON('PUT', 'trader', input, this.token);
   }
 
   public updateProgramMembers(input: StringDict): void {
     console.log('updateProgramMembers', input);
-    fetchJSON('POST', 'programMembers', input, this.token);
+    fetchJSON('PUT', 'programMembers', input, this.token);
   }
 
   public createTraderReport(input: StringDict): void {
     console.log('createTraderReport', input);
-    fetchJSON('PUT', 'traderReport', input, this.token);
+    fetchJSON('POST', 'traderReport', input, this.token);
   }
 
   public user(name: string): void {
