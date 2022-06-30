@@ -25,9 +25,11 @@ export async function fetchJSON(
         return response.json();
       })
       .then((data) => {
+        console.log('Success: ', data);
         resolve(data);
       })
       .catch((error) => {
+        console.log('Error: ', error);
         reject(error);
       });
   });
