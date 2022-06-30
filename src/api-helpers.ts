@@ -12,23 +12,25 @@ export async function fetchJSON(
     fetch(`${trackerLink}/${query}`, {
       method: mode,
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${token}`
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(body)
-    }).then(response => {
-      // 通信が成功したか確認
-      if (!response.ok) {
-        console.error('response.ok:', response.ok);
-        console.error('esponse.status:', response.status);
-        console.error('esponse.statusText:', response.statusText);
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    }).then(data => {
-      resolve(data);
-    }).catch(error => {
-      reject(error);
-    });
+      body: JSON.stringify(body),
+    })
+      .then((response) => {
+        console.log(response);
+        // 通信が成功したか確認
+        if (!response.ok) {
+          console.error('esponse.status:', response.status);
+          console.error(response.json());
+        }
+        return response.json();
+      })
+      .then((data) => {
+        resolve(data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }
