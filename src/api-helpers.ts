@@ -1,7 +1,7 @@
 import type { StringDict } from '../types/index';
 
 const trackerLink =
-  'https://ip6w7iphheabxfu7clkxg7zxkq0kpmgj.lambda-url.ap-northeast-1.on.aws';
+  'https://avjby6ynal.execute-api.ap-northeast-1.amazonaws.com/dev';
 export async function fetchJSON(
   mode: 'POST' | 'PUT',
   query: string,
