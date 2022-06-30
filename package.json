@@ -6,6 +6,7 @@
   "module": "dist/partners.es.js",
   "browser": "dist/partners.js",
   "types": "types/index.d.ts",
+  "type": "module",
   "files": [
     "package.json",
     "README.md",
