@@ -26,23 +26,26 @@ export async function fetchJSON(
   body: StringDict,
   token: string
 ) {
-  const response = await fetch(`${trackerLink}/${query}`, {
-    method: mode,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(body),
-  });
-  // レスポンスの本文を取得
-  const data = await response.json();
-  if (response.ok) {
-    // HTTP ステータスが 200-299 の場合
-    console.log('Success: ', data);
-    return data;
-  } else {
-    console.error(`HTTP-Error: ${response.status}`);
-    console.error(data);
+  try {
+    const response = await fetch(`${trackerLink}/${query}`, {
+      method: mode,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    });
+    // レスポンスの本文を取得
+    const data = await response.json();
+    if (response.ok) {
+      // HTTP ステータスが 200-299 の場合
+      console.log('Success: ', data);
+      return data;
+    } else {
+      console.error(data);
+    }
+  } catch (error) {
+    throw error;
   }
 
   // fetch(`${trackerLink}/${query}`, {
