@@ -1,5 +1,5 @@
 {
-  "version": "0.7.3",
+  "version": "0.7.4",
   "license": "MIT",
   "main": "dist/index.js",
   "browser": "dist/browser.js",
@@ -14,10 +14,11 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build --entry src/index.ts --entry src/browser.ts",
+    "build": "tsdx build --entry src/index.ts --entry src/browser.ts --format cjs,esm,umd -target browser --name partner-browser",
+    "browser": "tsdx build ",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build --entry src/index.ts --entry src/browser.ts",
+    "prepare": "tsdx build --entry src/index.ts --entry src/browser.ts --format cjs,esm,umd -target browser --name partner-browser",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
@@ -47,17 +48,18 @@
     }
   ],
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.3",
     "@size-limit/preset-small-lib": "^7.0.8",
-    "husky": "^8.0.1",
-    "size-limit": "^7.0.8",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.4",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.2.1"
+    "husky": "^8.0.1",
+    "prettier": "^2.2.1",
+    "size-limit": "^7.0.8",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
   }
 }
