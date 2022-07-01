@@ -1,9 +1,9 @@
 {
-  "version": "0.7.5",
+  "version": "0.7.6",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/partners.js",
   "browser": "dist/browser.js",
-  "typings": "dist/index.d.ts",
+  "typings": "dist/partners.d.ts",
   "files": [
     "dist",
     "src",
@@ -14,11 +14,11 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build --entry src/index.ts --entry src/browser.ts --format cjs,esm,umd",
+    "build": "tsdx build --entry src/partners.ts --entry src/browser.ts --format cjs,esm,umd",
     "browser": "tsdx build ",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build --entry src/index.ts --entry src/browser.ts --format cjs,esm,umd",
+    "prepare": "tsdx build --entry src/partners.ts --entry src/browser.ts --format cjs,esm,umd",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },

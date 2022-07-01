@@ -25,8 +25,9 @@ const formInit = (programId: string) => {
 // ブラウザでスクリプトを読み込んだ場合
 const currentScript = document.currentScript;
 if (currentScript) {
-  const programId = currentScript.getAttribute('data-program-id') as string;
-  if (programId) formInit(programId);
+  cookieInit();
+  // const programId = currentScript.getAttribute('data-program-id') as string;
+  // if (programId) formInit(programId);
 }
 
 export default { cookieInit, formInit };
